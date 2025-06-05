@@ -22,12 +22,15 @@ Thumbs.db
 dist/
 build/
 
-# Model & large data files (optional – uncomment if needed)
-# *.h5
-# *.pkl
-# *.joblib
-# *.csv
-# *.zip
+# Ignore PDFs
+*.pdf
+
+# Ignore ZIP files
+*.zip
+
+# Ignore CSV files
+*.csv
+
 
 # VSCode settings (optional)
 .vscode/
