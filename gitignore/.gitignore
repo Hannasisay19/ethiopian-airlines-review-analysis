@@ -1,0 +1,40 @@
+# Byte-compiled / cache / logs
+__pycache__/
+*.py[cod]
+*.log
+
+# Virtual environment
+venv/
+env/
+.venv/
+.env/
+
+# Jupyter notebook checkpoints
+.ipynb_checkpoints/
+
+# Hidden system files
+.DS_Store
+Thumbs.db
+
+# Python egg / packaging
+*.egg
+*.egg-info/
+dist/
+build/
+
+# Model & large data files (optional – uncomment if needed)
+# *.h5
+# *.pkl
+# *.joblib
+# *.csv
+# *.zip
+
+# VSCode settings (optional)
+.vscode/
+
+# Spyder settings (optional)
+.spyderproject
+.spyproject
+
+# Jupyter Notebook metadata
+*.nbconvert.ipynb
