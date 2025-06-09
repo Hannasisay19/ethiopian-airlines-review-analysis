@@ -1,43 +1,103 @@
-# Byte-compiled / cache / logs
+# Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
-*.log
+*$py.class
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints
 
 # Virtual environment
 venv/
 env/
+ENV/
 .venv/
-.env/
+.Python
+*.env
+*.venv
 
-# Jupyter notebook checkpoints
-.ipynb_checkpoints/
+# Environment variables or secrets
+.env
+.env.*
 
-# Hidden system files
+# macOS and Linux system files
 .DS_Store
 Thumbs.db
 
-# Python egg / packaging
-*.egg
-*.egg-info/
-dist/
-build/
-
-# Ignore PDFs
-*.pdf
-
-# Ignore ZIP files
-*.zip
-
-# Ignore CSV files
-*.csv
-
-
-# VSCode settings (optional)
+# VS Code settings
 .vscode/
 
-# Spyder settings (optional)
-.spyderproject
-.spyproject
+# PyCharm settings
+.idea/
 
-# Jupyter Notebook metadata
+# Logs
+*.log
+
+# Data
+data/
+*.csv
+*.xlsx
+*.tsv
+*.json
+*.xml
+*.db
+
+# Raw scraped HTML and intermediate outputs
+scraped_pages/
+scraped_html/
+raw_data/
+*.html
+
+# Model artifacts
+*.h5
+*.hdf5
+*.pkl
+*.joblib
+*.sav
+checkpoints/
+models/
+saved_models/
+
+# Dash / Streamlit / Flask generated files
+__pycache__/
+*.pyc
+instance/
+.webassets-cache/
+static/
+
+# Reports and output
+outputs/
+reports/
+plots/
+*.png
+*.jpg
+*.jpeg
+*.svg
+*.pdf
+
+# Notebook output cache
 *.nbconvert.ipynb
+
+# Temporary files
+*.tmp
+*.bak
+*.swp
+*.~ 
+
+# Test and cache directories
+.cache/
+.pytest_cache/
+coverage/
+
+# TensorBoard and other experiment logs
+runs/
+logs/
+tensorboard_logs/
+
+# Ignore personal config files
+*.config
+*.yml
+config.json
+
+# Include only selected data for tracking (example, if cleaned data is small and useful)
+#!data/cleaned_sample.csv
+
