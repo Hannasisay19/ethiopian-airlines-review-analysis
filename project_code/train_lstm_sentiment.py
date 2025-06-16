@@ -213,3 +213,35 @@ def main():
     
     plt.tight_layout()
     plt.show()
+
+    # Final evaluation
+    model.load_state_dict(torch.load('../models/lstm_model.pth'))
+    _, _, y_pred_encoded, y_true = eval_model(model, test_loader, criterion, device)
+    
+    y_pred = le.inverse_transform(y_pred_encoded)
+    y_test_labels = le.inverse_transform(y_true)
+    
+    print("\nClassification Report:")
+    print(classification_report(y_test_labels, y_pred))
+    
+    # Confusion Matrix
+    cm = confusion_matrix(y_test_labels, y_pred)
+    plt.figure(figsize=(8, 6))
+    plt.imshow(cm, interpolation='nearest', cmap=plt.cm.Blues)
+    plt.title('Confusion Matrix')
+    plt.colorbar()
+    tick_marks = np.arange(len(le.classes_))
+    plt.xticks(tick_marks, le.classes_, rotation=45)
+    plt.yticks(tick_marks, le.classes_)
+    
+    thresh = cm.max() / 2.
+    for i in range(cm.shape[0]):
+        for j in range(cm.shape[1]):
+            plt.text(j, i, format(cm[i, j], 'd'),
+                    ha="center", va="center",
+                    color="white" if cm[i, j] > thresh else "black")
+    
+    plt.ylabel('True label')
+    plt.xlabel('Predicted label')
+    plt.tight_layout()
+    plt.show() 
