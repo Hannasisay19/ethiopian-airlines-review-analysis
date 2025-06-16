@@ -41,3 +41,32 @@ class TextDataset(Dataset):
             'attention_mask': encoding['attention_mask'].flatten(),
             'label': torch.tensor(label, dtype=torch.long)
         }
+
+# 2. LSTM Model Architecture
+class SentimentLSTM(nn.Module):
+    def __init__(self, vocab_size, embedding_dim, hidden_dim, output_dim, n_layers, dropout):
+        super().__init__()
+        self.embedding = nn.Embedding(vocab_size, embedding_dim, padding_idx=0)
+        self.lstm = nn.LSTM(embedding_dim, 
+                           hidden_dim, 
+                           num_layers=n_layers,
+                           bidirectional=True,
+                           dropout=dropout if n_layers > 1 else 0,
+                           batch_first=True)
+        self.fc = nn.Linear(hidden_dim * 2, output_dim)
+        self.dropout = nn.Dropout(dropout)
+        
+    def forward(self, input_ids, attention_mask):
+        embedded = self.dropout(self.embedding(input_ids))
+        
+        # Only process non-padded tokens
+        lengths = attention_mask.sum(dim=1)
+        packed_embedded = nn.utils.rnn.pack_padded_sequence(
+            embedded, lengths.cpu(), batch_first=True, enforce_sorted=False)
+        
+        packed_output, (hidden, cell) = self.lstm(packed_embedded)
+        
+        # Concatenate final forward and backward hidden states
+        hidden = self.dropout(torch.cat((hidden[-2,:,:], hidden[-1,:,:]), dim=1))
+        
+        return self.fc(hidden)
