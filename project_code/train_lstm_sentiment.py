@@ -153,3 +153,37 @@ def main():
     train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True)
     test_loader = DataLoader(test_dataset, batch_size=batch_size)
     
+    # Initialize model
+    model = SentimentLSTM(
+        vocab_size=vocab_size,
+        embedding_dim=128,
+        hidden_dim=64,
+        output_dim=num_classes,
+        n_layers=2,
+        dropout=0.3
+    ).to(device)
+    
+    # Training setup
+    criterion = nn.CrossEntropyLoss()
+    optimizer = optim.Adam(model.parameters())
+    
+    # Training loop
+    best_accuracy = 0
+    train_losses = []
+    val_losses = []
+    train_accuracies = []
+    val_accuracies = []
+
+    for epoch in range(10):
+        print(f"\nEpoch {epoch + 1}/10")
+        
+        train_loss, train_acc = train_model(model, train_loader, optimizer, criterion, device)
+        val_loss, val_acc, _, _ = eval_model(model, test_loader, criterion, device)
+        
+        train_losses.append(train_loss)
+        val_losses.append(val_loss)
+        train_accuracies.append(train_acc)
+        val_accuracies.append(val_acc)
+        
+        print(f"Train Loss: {train_loss:.4f} | Train Acc: {train_acc:.4f}")
+        print(f"Val Loss: {val_loss:.4f} | Val Acc: {val_acc:.4f}")
