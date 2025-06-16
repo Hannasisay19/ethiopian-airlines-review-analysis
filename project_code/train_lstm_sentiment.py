@@ -70,3 +70,27 @@ class SentimentLSTM(nn.Module):
         hidden = self.dropout(torch.cat((hidden[-2,:,:], hidden[-1,:,:]), dim=1))
         
         return self.fc(hidden)
+
+
+# 3. Training Setup
+def train_model(model, data_loader, optimizer, criterion, device):
+    model.train()
+    total_loss = 0
+    correct_predictions = 0
+    
+    for batch in tqdm(data_loader, desc="Training"):
+        input_ids = batch['input_ids'].to(device)
+        attention_mask = batch['attention_mask'].to(device)
+        labels = batch['label'].to(device)
+        
+        optimizer.zero_grad()
+        outputs = model(input_ids, attention_mask)
+        loss = criterion(outputs, labels)
+        loss.backward()
+        optimizer.step()
+        
+        total_loss += loss.item()
+        _, preds = torch.max(outputs, dim=1)
+        correct_predictions += torch.sum(preds == labels)
+    
+    return total_loss / len(data_loader), correct_predictions.double() / len(data_loader.dataset)
