@@ -122,3 +122,34 @@ def eval_model(model, data_loader, criterion, device):
     return (total_loss / len(data_loader), 
             correct_predictions.double() / len(data_loader.dataset),
             all_preds, all_labels)
+
+# 5. Main Execution
+def main():
+    # Load and prepare data
+    file_path="../datasets/sentiment_analysis/ethiopian_airlines_overall_sentiment.csv"
+    df = pd.read_csv(file_path)
+    X_train, X_test, y_train, y_test = train_test_split(
+        df['review_comment'], df['overall_sentiment'], test_size=0.2, random_state=42, stratify=df['overall_sentiment']
+    )
+    
+    # Label encoding
+    le = LabelEncoder()
+    y_train_encoded = le.fit_transform(y_train)
+    y_test_encoded = le.transform(y_test)
+    num_classes = len(le.classes_)
+    
+    # Tokenizer (using HuggingFace's tokenizer for better text handling)
+    from transformers import AutoTokenizer
+    tokenizer = AutoTokenizer.from_pretrained('bert-base-uncased')
+    vocab_size = tokenizer.vocab_size
+    
+    # Create datasets
+    max_len = 200
+    batch_size = 64
+    
+    train_dataset = TextDataset(X_train.tolist(), y_train_encoded, tokenizer, max_len)
+    test_dataset = TextDataset(X_test.tolist(), y_test_encoded, tokenizer, max_len)
+    
+    train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True)
+    test_loader = DataLoader(test_dataset, batch_size=batch_size)
+    
