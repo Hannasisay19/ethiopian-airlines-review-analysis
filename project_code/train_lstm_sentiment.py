@@ -71,7 +71,6 @@ class SentimentLSTM(nn.Module):
         
         return self.fc(hidden)
 
-
 # 3. Training Setup
 def train_model(model, data_loader, optimizer, criterion, device):
     model.train()
@@ -244,4 +243,7 @@ def main():
     plt.ylabel('True label')
     plt.xlabel('Predicted label')
     plt.tight_layout()
-    plt.show() 
+    plt.show()
+
+if __name__ == '__main__':
+    main()
