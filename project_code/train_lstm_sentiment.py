@@ -94,3 +94,31 @@ def train_model(model, data_loader, optimizer, criterion, device):
         correct_predictions += torch.sum(preds == labels)
     
     return total_loss / len(data_loader), correct_predictions.double() / len(data_loader.dataset)
+
+# 4. Evaluation Function
+def eval_model(model, data_loader, criterion, device):
+    model.eval()
+    total_loss = 0
+    correct_predictions = 0
+    all_preds = []
+    all_labels = []
+    
+    with torch.no_grad():
+        for batch in tqdm(data_loader, desc="Evaluation"):
+            input_ids = batch['input_ids'].to(device)
+            attention_mask = batch['attention_mask'].to(device)
+            labels = batch['label'].to(device)
+            
+            outputs = model(input_ids, attention_mask)
+            loss = criterion(outputs, labels)
+            
+            total_loss += loss.item()
+            _, preds = torch.max(outputs, dim=1)
+            correct_predictions += torch.sum(preds == labels)
+            
+            all_preds.extend(preds.cpu().numpy())
+            all_labels.extend(labels.cpu().numpy())
+    
+    return (total_loss / len(data_loader), 
+            correct_predictions.double() / len(data_loader.dataset),
+            all_preds, all_labels)
