@@ -149,7 +149,7 @@ def main():
 
     # Tokenizer (using HuggingFace's tokenizer for better text handling)
     tokenizer = AutoTokenizer.from_pretrained('bert-base-uncased')
-    vocab_size = tokenizer.vocab_size
+   
     
     # Create datasets
     max_len = 200
@@ -185,7 +185,7 @@ def main():
     for epoch in range(num_epochs):  
         print(f"\nEpoch {epoch + 1}/{num_epochs}")
         train_loss, train_acc = train_model(model, train_loader, optimizer, criterion, device)
-        val_loss, val_acc, _, _ = eval_model(model, test_loader, criterion, device)
+        val_loss, val_acc, y_pred_encoded, y_true = eval_model(model, test_loader, criterion, device)
         
         train_losses.append(train_loss)
         val_losses.append(val_loss)
