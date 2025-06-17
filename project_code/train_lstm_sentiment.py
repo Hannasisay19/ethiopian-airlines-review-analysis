@@ -10,7 +10,7 @@ from sklearn.utils.class_weight import compute_class_weight
 import matplotlib.pyplot as plt
 import numpy as np
 from tqdm import tqdm
-from transformers import AutoTokenizer
+from transformers import AutoTokenizer, BertModel
 
 # Device configuration
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
@@ -48,7 +48,7 @@ class TextDataset(Dataset):
 class SentimentLSTM(nn.Module):
     def __init__(self, vocab_size, embedding_dim, hidden_dim, output_dim, n_layers, dropout):
         super().__init__()
-        self.embedding = nn.Embedding(vocab_size, embedding_dim, padding_idx=0)
+        self.bert = BertModel.from_pretrained(bert_model_name)
         self.lstm = nn.LSTM(embedding_dim, 
                            hidden_dim, 
                            num_layers=n_layers,
@@ -159,8 +159,7 @@ def main():
     
     # Initialize model
     model = SentimentLSTM(
-        vocab_size=vocab_size,
-        embedding_dim=128,
+        bert_model_name='bert-base-uncased',
         hidden_dim=64,
         output_dim=num_classes,
         n_layers=2,
