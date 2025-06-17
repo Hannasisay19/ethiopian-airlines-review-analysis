@@ -144,8 +144,8 @@ def main():
     vocab_size = tokenizer.vocab_size
     
     # Create datasets
-    max_len = 100
-    batch_size = 64
+    max_len = 200
+    batch_size = 128
     
     train_dataset = TextDataset(X_train.tolist(), y_train_encoded, tokenizer, max_len)
     test_dataset = TextDataset(X_test.tolist(), y_test_encoded, tokenizer, max_len)
@@ -168,7 +168,7 @@ def main():
     scheduler = optim.lr_scheduler.StepLR(optimizer, step_size=3, gamma=0.5)  
     
     # Training loop
-    num_epochs = 5
+    num_epochs = 15
     best_accuracy = 0
     patience, counter = 3, 0
     train_losses, val_losses = [], []
@@ -225,7 +225,6 @@ def main():
     # Final evaluation
     model.load_state_dict(torch.load(r'models/lstm_model.pth'))
     _, _, y_pred_encoded, y_true = eval_model(model, test_loader, criterion, device)
-    
     y_pred = le.inverse_transform(y_pred_encoded)
     y_test_labels = le.inverse_transform(y_true)
     
