@@ -168,14 +168,14 @@ def main():
     scheduler = optim.lr_scheduler.StepLR(optimizer, step_size=3, gamma=0.5)  
     
     # Training loop
+    num_epochs = 5
     best_accuracy = 0
     patience, counter = 3, 0
     train_losses, val_losses = [], []
     train_accuracies, val_accuracies = [], []
 
-    for epoch in range(5):
-        print(f"\nEpoch {epoch + 1}/5")
-        
+    for epoch in range(num_epochs):  
+        print(f"\nEpoch {epoch + 1}/{num_epochs}")
         train_loss, train_acc = train_model(model, train_loader, optimizer, criterion, device)
         val_loss, val_acc, _, _ = eval_model(model, test_loader, criterion, device)
         
