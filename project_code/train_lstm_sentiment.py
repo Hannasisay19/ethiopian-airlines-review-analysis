@@ -144,8 +144,8 @@ def main():
     vocab_size = tokenizer.vocab_size
     
     # Create datasets
-    max_len = 200
-    batch_size = 128
+    max_len = 100
+    batch_size = 64
     
     train_dataset = TextDataset(X_train.tolist(), y_train_encoded, tokenizer, max_len)
     test_dataset = TextDataset(X_test.tolist(), y_test_encoded, tokenizer, max_len)
