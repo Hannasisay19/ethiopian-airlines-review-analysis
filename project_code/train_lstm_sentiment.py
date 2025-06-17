@@ -59,18 +59,14 @@ class SentimentLSTM(nn.Module):
         self.dropout = nn.Dropout(dropout)
         
     def forward(self, input_ids, attention_mask):
-        embedded = self.dropout(self.embedding(input_ids))
-        
-        # Only process non-padded tokens
+        with torch.no_grad():
+            outputs = self.bert(input_ids=input_ids, attention_mask=attention_mask)
+        embedded = outputs.last_hidden_state
         lengths = attention_mask.sum(dim=1)
         packed_embedded = nn.utils.rnn.pack_padded_sequence(
             embedded, lengths.cpu(), batch_first=True, enforce_sorted=False)
-        
         packed_output, (hidden, cell) = self.lstm(packed_embedded)
-        
-        # Concatenate final forward and backward hidden states
-        hidden = self.dropout(torch.cat((hidden[-2,:,:], hidden[-1,:,:]), dim=1))
-        
+        hidden = self.dropout(torch.cat((hidden[-2, :, :], hidden[-1, :, :]), dim=1))
         return self.fc(hidden)
 
 # 3. Training Setup
@@ -173,10 +169,9 @@ def main():
     
     # Training loop
     best_accuracy = 0
-    train_losses = []
-    val_losses = []
-    train_accuracies = []
-    val_accuracies = []
+    patience, counter = 3, 0
+    train_losses, val_losses = [], []
+    train_accuracies, val_accuracies = [], []
 
     for epoch in range(5):
         print(f"\nEpoch {epoch + 1}/5")
@@ -198,6 +193,13 @@ def main():
         if val_acc > best_accuracy:
             best_accuracy = val_acc
             torch.save(model.state_dict(), 'models/lstm_model.pth')
+            counter = 0
+        else:
+            counter += 1
+            if counter >= patience:
+                print("Early stopping")
+                break
+
     
     # Plot training history
     plt.figure(figsize=(12, 5))
