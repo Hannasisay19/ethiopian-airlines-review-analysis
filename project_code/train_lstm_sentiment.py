@@ -178,8 +178,8 @@ def main():
     train_accuracies = []
     val_accuracies = []
 
-    for epoch in range(15):
-        print(f"\nEpoch {epoch + 1}/15")
+    for epoch in range(5):
+        print(f"\nEpoch {epoch + 1}/5")
         
         train_loss, train_acc = train_model(model, train_loader, optimizer, criterion, device)
         val_loss, val_acc, _, _ = eval_model(model, test_loader, criterion, device)
