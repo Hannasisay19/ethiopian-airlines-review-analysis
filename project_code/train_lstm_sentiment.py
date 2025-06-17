@@ -46,15 +46,15 @@ class TextDataset(Dataset):
 
 # 2. LSTM Model Architecture
 class SentimentLSTM(nn.Module):
-    def __init__(self, vocab_size, embedding_dim, hidden_dim, output_dim, n_layers, dropout):
+    def __init__(self, bert_model_name, hidden_dim, output_dim, n_layers, dropout, freeze_bert=True):
         super().__init__()
         self.bert = BertModel.from_pretrained(bert_model_name)
-        self.lstm = nn.LSTM(embedding_dim, 
-                           hidden_dim, 
-                           num_layers=n_layers,
-                           bidirectional=True,
-                           dropout=dropout if n_layers > 1 else 0,
-                           batch_first=True)
+        if freeze_bert:
+            for param in self.bert.parameters():
+                param.requires_grad = False
+        self.lstm = nn.LSTM(self.bert.config.hidden_size, hidden_dim,
+                            num_layers=n_layers, bidirectional=True,
+                            dropout=dropout if n_layers > 1 else 0, batch_first=True)
         self.fc = nn.Linear(hidden_dim * 2, output_dim)
         self.dropout = nn.Dropout(dropout)
         
