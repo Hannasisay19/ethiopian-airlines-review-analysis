@@ -69,11 +69,13 @@ class SentimentLSTM(nn.Module):
         hidden = self.dropout(torch.cat((hidden[-2, :, :], hidden[-1, :, :]), dim=1))
         return self.fc(hidden)
 
-# 3. Training Setup
+# 3. Training Function
 def train_model(model, data_loader, optimizer, criterion, device):
     model.train()
     total_loss = 0
     correct_predictions = 0
+    class_correct = [0] * model.fc.out_features
+    class_total = [0] * model.fc.out_features
     
     for batch in tqdm(data_loader, desc="Training"):
         input_ids = batch['input_ids'].to(device)
@@ -90,7 +92,15 @@ def train_model(model, data_loader, optimizer, criterion, device):
         _, preds = torch.max(outputs, dim=1)
         correct_predictions += torch.sum(preds == labels)
     
-    return total_loss / len(data_loader), correct_predictions.double() / len(data_loader.dataset)
+        for i in range(len(labels)):
+            label = labels[i].item()
+            pred = preds[i].item()
+            if label == pred:
+                class_correct[label] += 1
+            class_total[label] += 1
+
+    per_class_accuracy = [c / t if t != 0 else 0 for c, t in zip(class_correct, class_total)]
+    return total_loss / len(data_loader), correct_predictions.double() / len(data_loader.dataset), per_class_accuracy
 
 # 4. Evaluation Function
 def eval_model(model, data_loader, criterion, device):
