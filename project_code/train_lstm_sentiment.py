@@ -149,7 +149,7 @@ def main():
     
     # Create datasets
     max_len = 200
-    batch_size = 64
+    batch_size = 128
     
     train_dataset = TextDataset(X_train.tolist(), y_train_encoded, tokenizer, max_len)
     test_dataset = TextDataset(X_test.tolist(), y_test_encoded, tokenizer, max_len)
@@ -178,8 +178,8 @@ def main():
     train_accuracies = []
     val_accuracies = []
 
-    for epoch in range(10):
-        print(f"\nEpoch {epoch + 1}/10")
+    for epoch in range(15):
+        print(f"\nEpoch {epoch + 1}/15")
         
         train_loss, train_acc = train_model(model, train_loader, optimizer, criterion, device)
         val_loss, val_acc, _, _ = eval_model(model, test_loader, criterion, device)
