@@ -6,10 +6,11 @@ import torch.optim as optim
 from torch.utils.data import Dataset, DataLoader
 from sklearn.preprocessing import LabelEncoder
 from sklearn.metrics import classification_report, confusion_matrix
+from sklearn.utils.class_weight import compute_class_weight
 import matplotlib.pyplot as plt
 import numpy as np
 from tqdm import tqdm
-import os
+from transformers import AutoTokenizer
 
 # Device configuration
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
@@ -138,8 +139,11 @@ def main():
     y_test_encoded = le.transform(y_test)
     num_classes = len(le.classes_)
     
+    # Compute class weights
+    class_weights = compute_class_weight(class_weight='balanced', classes=np.unique(y_train_encoded), y=y_train_encoded)
+    weights = torch.tensor(class_weights, dtype=torch.float).to(device)
+
     # Tokenizer (using HuggingFace's tokenizer for better text handling)
-    from transformers import AutoTokenizer
     tokenizer = AutoTokenizer.from_pretrained('bert-base-uncased')
     vocab_size = tokenizer.vocab_size
     
