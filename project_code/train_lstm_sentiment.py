@@ -168,7 +168,7 @@ def main():
     ).to(device)
     
     # Training setup
-    criterion = nn.CrossEntropyLoss()
+    criterion = nn.CrossEntropyLoss(weight=weights)
     optimizer = optim.Adam(model.parameters())
     
     # Training loop
