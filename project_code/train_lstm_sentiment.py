@@ -168,7 +168,8 @@ def main():
     
     # Training setup
     criterion = nn.CrossEntropyLoss(weight=weights)
-    optimizer = optim.Adam(model.parameters())
+    optimizer = optim.Adam(model.parameters(), lr=1e-4) 
+    scheduler = optim.lr_scheduler.StepLR(optimizer, step_size=3, gamma=0.5)  
     
     # Training loop
     best_accuracy = 0
@@ -190,6 +191,8 @@ def main():
         
         print(f"Train Loss: {train_loss:.4f} | Train Acc: {train_acc:.4f}")
         print(f"Val Loss: {val_loss:.4f} | Val Acc: {val_acc:.4f}")
+
+        scheduler.step()
 
         # Save best model
         if val_acc > best_accuracy:
