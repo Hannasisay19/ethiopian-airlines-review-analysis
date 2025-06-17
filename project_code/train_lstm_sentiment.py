@@ -65,7 +65,7 @@ class SentimentLSTM(nn.Module):
         lengths = attention_mask.sum(dim=1)
         packed_embedded = nn.utils.rnn.pack_padded_sequence(
             embedded, lengths.cpu(), batch_first=True, enforce_sorted=False)
-        packed_output, (hidden, cell) = self.lstm(packed_embedded)
+        _, (hidden, _) = self.lstm(packed_embedded)
         hidden = self.dropout(torch.cat((hidden[-2, :, :], hidden[-1, :, :]), dim=1))
         return self.fc(hidden)
 
@@ -192,7 +192,7 @@ def main():
         # Save best model
         if val_acc > best_accuracy:
             best_accuracy = val_acc
-            torch.save(model.state_dict(), 'models/lstm_model.pth')
+            torch.save(model.state_dict(), 'models/final_lstm_model.pth')
             counter = 0
         else:
             counter += 1
@@ -223,7 +223,7 @@ def main():
     plt.show()
 
     # Final evaluation
-    model.load_state_dict(torch.load(r'models/lstm_model.pth'))
+    model.load_state_dict(torch.load(r'models/final_lstm_model.pth'))
     _, _, y_pred_encoded, y_true = eval_model(model, test_loader, criterion, device)
     y_pred = le.inverse_transform(y_pred_encoded)
     y_test_labels = le.inverse_transform(y_true)
