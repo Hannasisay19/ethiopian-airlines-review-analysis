@@ -184,7 +184,7 @@ def main():
 
     for epoch in range(num_epochs):  
         print(f"\nEpoch {epoch + 1}/{num_epochs}")
-        train_loss, train_acc = train_model(model, train_loader, optimizer, criterion, device)
+        train_loss, train_acc, train_per_class_acc = train_model(model, train_loader, optimizer, criterion, device)
         val_loss, val_acc, y_pred_encoded, y_true = eval_model(model, test_loader, criterion, device)
         
         train_losses.append(train_loss)
@@ -192,7 +192,7 @@ def main():
         train_accuracies.append(train_acc)
         val_accuracies.append(val_acc)
         
-        print(f"Train Loss: {train_loss:.4f} | Train Acc: {train_acc:.4f}")
+        print(f"Train Loss: {train_loss:.4f} | Train Acc: {train_acc:.4f} | Per-Class: {train_per_class_acc}")
         print(f"Val Loss: {val_loss:.4f} | Val Acc: {val_acc:.4f}")
 
         scheduler.step()
