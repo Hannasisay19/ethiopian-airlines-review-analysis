@@ -143,7 +143,7 @@ def main():
     y_test_encoded = le.transform(y_test)
     num_classes = len(le.classes_)
     
-    # Compute class weights
+    # Compute class weights to handle class imbalance
     class_weights = compute_class_weight(class_weight='balanced', classes=np.unique(y_train_encoded), y=y_train_encoded)
     weights = torch.tensor(class_weights, dtype=torch.float).to(device)
 
@@ -151,7 +151,7 @@ def main():
     tokenizer = AutoTokenizer.from_pretrained('bert-base-uncased')
    
     
-    # Create datasets
+    # Prepare datasets and dataloaders
     max_len = 200
     batch_size = 128
     
@@ -161,7 +161,7 @@ def main():
     train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True)
     test_loader = DataLoader(test_dataset, batch_size=batch_size)
     
-    # Initialize model
+    # Initialize the LSTM model with BERT embeddings
     model = SentimentLSTM(
         bert_model_name='bert-base-uncased',
         hidden_dim=64,
