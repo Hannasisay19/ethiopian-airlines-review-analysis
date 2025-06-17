@@ -54,8 +54,7 @@ raw_data/
 *.joblib
 *.sav
 checkpoints/
-models/
-saved_models/
+
 
 # Dash / Streamlit / Flask generated files
 __pycache__/
