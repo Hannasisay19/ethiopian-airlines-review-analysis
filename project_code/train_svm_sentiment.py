@@ -34,3 +34,6 @@ svm_pipe = make_pipeline(
 # Train
 svm_pipe.fit(X_train, y_train_encoded)
 
+# Evaluation
+y_pred_encoded = svm_pipe.predict(X_test)
+y_pred_svm = le.inverse_transform(y_pred_encoded)
