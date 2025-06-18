@@ -53,7 +53,9 @@ raw_data/
 *.pkl
 *.joblib
 *.sav
+*.pth
 checkpoints/
+models/
 
 
 # Dash / Streamlit / Flask generated files
