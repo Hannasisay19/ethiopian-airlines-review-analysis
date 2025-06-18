@@ -21,3 +21,16 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_
 le = LabelEncoder()
 y_train_encoded = le.fit_transform(y_train)
 y_test_encoded = le.transform(y_test)
+
+# Create SVM pipeline
+svm_pipe = make_pipeline(
+    TfidfVectorizer(max_features=5000),
+    CalibratedClassifierCV(
+        SVC(kernel='rbf', class_weight='balanced', probability=True),
+        method='sigmoid'
+    )
+)
+
+# Train
+svm_pipe.fit(X_train, y_train_encoded)
+
