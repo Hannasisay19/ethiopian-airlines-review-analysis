@@ -62,4 +62,8 @@ plt.tight_layout()
 plt.savefig("svm_confusion_matrix.png")
 plt.show()
 
+# Save model, vectorizer, and encoder
+joblib.dump(svm_model, "models/final_svm_model.joblib")
+
+print("\n Model saved in 'models/' directory.")
 
