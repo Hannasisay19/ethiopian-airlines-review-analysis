@@ -50,3 +50,5 @@ sns.heatmap(confusion_matrix(y_test, y_pred_svm),
            yticklabels=le.classes_)
 plt.title('SVM Confusion Matrix')
 plt.show()
+
+
