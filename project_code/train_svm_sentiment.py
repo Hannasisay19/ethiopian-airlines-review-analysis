@@ -52,13 +52,14 @@ print(classification_report(y_test, y_pred_labels))
 print(f"Accuracy: {accuracy_score(y_test, y_pred_labels):.4f}")
 
 # Confusion Matrix
+cm = confusion_matrix(y_test, y_pred_labels, labels=le.classes_)
 plt.figure(figsize=(8,6))
-sns.heatmap(confusion_matrix(y_test,y_pred_labels),
-           annot=True, fmt='d',
-           cmap='Reds',
-           xticklabels=le.classes_,
-           yticklabels=le.classes_)
-plt.title('SVM Confusion Matrix')
+sns.heatmap(cm, annot=True, fmt='d', cmap='Blues', xticklabels=le.classes_, yticklabels=le.classes_)
+plt.title('Confusion Matrix - SVM on Ethiopian Airlines Reviews')
+plt.xlabel('Predicted')
+plt.ylabel('Actual')
+plt.tight_layout()
+plt.savefig("svm_confusion_matrix.png")
 plt.show()
 
 
