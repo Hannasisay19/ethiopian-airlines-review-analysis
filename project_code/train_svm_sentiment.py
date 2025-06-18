@@ -5,7 +5,7 @@ from sklearn.pipeline import make_pipeline
 from sklearn.preprocessing import LabelEncoder
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import classification_report, confusion_matrix
+from sklearn.metrics import classification_report, confusion_matrix, accuracy_score
 import matplotlib.pyplot as plt
 import seaborn as sns
 from imblearn.over_sampling import SMOTE
@@ -42,16 +42,14 @@ svm_base = SVC(kernel='rbf', class_weight='balanced', probability=True)
 svm_model = CalibratedClassifierCV(svm_base, method='sigmoid')
 svm_model.fit(X_resampled, y_resampled)
 
-# Vectorize test data
-X_test_vec = vectorizer.transform(X_test)
-
-# Make predictions
+# predictions
 y_pred_encoded = svm_model.predict(X_test_vec)
 y_pred_labels = le.inverse_transform(y_pred_encoded)
 
-
+# Evaluation
 print("SVM Classification Report:")
 print(classification_report(y_test, y_pred_labels))
+print(f"Accuracy: {accuracy_score(y_test, y_pred_labels):.4f}")
 
 # Confusion Matrix
 plt.figure(figsize=(8,6))
