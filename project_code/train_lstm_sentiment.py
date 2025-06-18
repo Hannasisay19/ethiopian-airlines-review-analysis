@@ -65,15 +65,17 @@ class SentimentLSTM(nn.Module):
         lengths = attention_mask.sum(dim=1)
         packed_embedded = nn.utils.rnn.pack_padded_sequence(
             embedded, lengths.cpu(), batch_first=True, enforce_sorted=False)
-        packed_output, (hidden, cell) = self.lstm(packed_embedded)
+        _, (hidden, _) = self.lstm(packed_embedded)
         hidden = self.dropout(torch.cat((hidden[-2, :, :], hidden[-1, :, :]), dim=1))
         return self.fc(hidden)
 
-# 3. Training Setup
+# 3. Training Function
 def train_model(model, data_loader, optimizer, criterion, device):
     model.train()
     total_loss = 0
     correct_predictions = 0
+    class_correct = [0] * model.fc.out_features
+    class_total = [0] * model.fc.out_features
     
     for batch in tqdm(data_loader, desc="Training"):
         input_ids = batch['input_ids'].to(device)
@@ -90,7 +92,15 @@ def train_model(model, data_loader, optimizer, criterion, device):
         _, preds = torch.max(outputs, dim=1)
         correct_predictions += torch.sum(preds == labels)
     
-    return total_loss / len(data_loader), correct_predictions.double() / len(data_loader.dataset)
+        for i in range(len(labels)):
+            label = labels[i].item()
+            pred = preds[i].item()
+            if label == pred:
+                class_correct[label] += 1
+            class_total[label] += 1
+
+    per_class_accuracy = [c / t if t != 0 else 0 for c, t in zip(class_correct, class_total)]
+    return total_loss / len(data_loader), correct_predictions.double() / len(data_loader.dataset), per_class_accuracy
 
 # 4. Evaluation Function
 def eval_model(model, data_loader, criterion, device):
@@ -122,8 +132,6 @@ def eval_model(model, data_loader, criterion, device):
 
 # 5. Main Execution
 def main():
-    # Load and prepare data
-    #file_path="../datasets/sentiment_analysis/ethiopian_airlines_overall_sentiment.csv"
     df = pd.read_csv(r'datasets\sentiment_analysis\ethiopian_airlines_overall_sentiment.csv')
     X_train, X_test, y_train, y_test = train_test_split(
         df['review_comment'], df['overall_sentiment'], test_size=0.2, random_state=42, stratify=df['overall_sentiment']
@@ -135,15 +143,15 @@ def main():
     y_test_encoded = le.transform(y_test)
     num_classes = len(le.classes_)
     
-    # Compute class weights
+    # Compute class weights to handle class imbalance
     class_weights = compute_class_weight(class_weight='balanced', classes=np.unique(y_train_encoded), y=y_train_encoded)
     weights = torch.tensor(class_weights, dtype=torch.float).to(device)
 
     # Tokenizer (using HuggingFace's tokenizer for better text handling)
     tokenizer = AutoTokenizer.from_pretrained('bert-base-uncased')
-    vocab_size = tokenizer.vocab_size
+   
     
-    # Create datasets
+    # Prepare datasets and dataloaders
     max_len = 200
     batch_size = 128
     
@@ -153,7 +161,7 @@ def main():
     train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True)
     test_loader = DataLoader(test_dataset, batch_size=batch_size)
     
-    # Initialize model
+    # Initialize the LSTM model with BERT embeddings
     model = SentimentLSTM(
         bert_model_name='bert-base-uncased',
         hidden_dim=64,
@@ -168,23 +176,23 @@ def main():
     scheduler = optim.lr_scheduler.StepLR(optimizer, step_size=3, gamma=0.5)  
     
     # Training loop
+    num_epochs = 15
     best_accuracy = 0
     patience, counter = 3, 0
     train_losses, val_losses = [], []
     train_accuracies, val_accuracies = [], []
 
-    for epoch in range(5):
-        print(f"\nEpoch {epoch + 1}/5")
-        
-        train_loss, train_acc = train_model(model, train_loader, optimizer, criterion, device)
-        val_loss, val_acc, _, _ = eval_model(model, test_loader, criterion, device)
+    for epoch in range(num_epochs):  
+        print(f"\nEpoch {epoch + 1}/{num_epochs}")
+        train_loss, train_acc, train_per_class_acc = train_model(model, train_loader, optimizer, criterion, device)
+        val_loss, val_acc, y_pred_encoded, y_true = eval_model(model, test_loader, criterion, device)
         
         train_losses.append(train_loss)
         val_losses.append(val_loss)
         train_accuracies.append(train_acc)
         val_accuracies.append(val_acc)
         
-        print(f"Train Loss: {train_loss:.4f} | Train Acc: {train_acc:.4f}")
+        print(f"Train Loss: {train_loss:.4f} | Train Acc: {train_acc:.4f} | Per-Class: {train_per_class_acc}")
         print(f"Val Loss: {val_loss:.4f} | Val Acc: {val_acc:.4f}")
 
         scheduler.step()
@@ -192,7 +200,7 @@ def main():
         # Save best model
         if val_acc > best_accuracy:
             best_accuracy = val_acc
-            torch.save(model.state_dict(), 'models/lstm_model.pth')
+            torch.save(model.state_dict(), 'models/final_lstm_model.pth')
             counter = 0
         else:
             counter += 1
@@ -223,9 +231,8 @@ def main():
     plt.show()
 
     # Final evaluation
-    model.load_state_dict(torch.load(r'models/lstm_model.pth'))
+    model.load_state_dict(torch.load(r'models/final_lstm_model.pth'))
     _, _, y_pred_encoded, y_true = eval_model(model, test_loader, criterion, device)
-    
     y_pred = le.inverse_transform(y_pred_encoded)
     y_test_labels = le.inverse_transform(y_true)
     
