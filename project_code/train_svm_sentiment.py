@@ -14,3 +14,10 @@ df = pd.read_csv(r'datasets\sentiment_analysis\ethiopian_airlines_overall_sentim
 X = df['review_comment']
 y = df['overall_sentiment']
 
+# Train-test split with stratification
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42, stratify=y)
+
+# Encode labels (keeps original labels for reporting)
+le = LabelEncoder()
+y_train_encoded = le.fit_transform(y_train)
+y_test_encoded = le.transform(y_test)
