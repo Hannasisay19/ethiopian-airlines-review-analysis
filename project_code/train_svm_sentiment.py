@@ -37,3 +37,16 @@ svm_pipe.fit(X_train, y_train_encoded)
 # Evaluation
 y_pred_encoded = svm_pipe.predict(X_test)
 y_pred_svm = le.inverse_transform(y_pred_encoded)
+
+print("SVM Classification Report:")
+print(classification_report(y_test, y_pred_svm))
+
+# Confusion Matrix
+plt.figure(figsize=(8,6))
+sns.heatmap(confusion_matrix(y_test, y_pred_svm),
+           annot=True, fmt='d',
+           cmap='Reds',
+           xticklabels=le.classes_,
+           yticklabels=le.classes_)
+plt.title('SVM Confusion Matrix')
+plt.show()
