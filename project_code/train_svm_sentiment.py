@@ -14,7 +14,7 @@ import os
 
 
 # Load data
-df = pd.read_csv(r'datasets\sentiment_analysis\ethiopian_airlines_overall_sentiment.csv')
+df = pd.read_csv("../datasets/labeled_data/ethiopian_airlines_overall_sentiment_final.csv")
 
 # Extract input and target
 X = df['review_comment']
