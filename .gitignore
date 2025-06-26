@@ -68,8 +68,6 @@ static/
 outputs/
 reports/
 plots/
-*.png
-*.jpg
 *.jpeg
 *.svg
 *.pdf
