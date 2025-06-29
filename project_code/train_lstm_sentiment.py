@@ -132,7 +132,7 @@ def eval_model(model, data_loader, criterion, device):
 
 # 5. Main Execution
 def main():
-    df = pd.read_csv("../datasets/labeled_data/ethiopian_airlines_overall_sentiment_final.csv")
+    df = pd.read_csv(r'datasets\labeled_data\ethiopian_airlines_overall_sentiment_final.csv')
     X_train, X_test, y_train, y_test = train_test_split(
         df['review_comment'], df['overall_sentiment'], test_size=0.2, random_state=42, stratify=df['overall_sentiment']
     )
@@ -167,12 +167,12 @@ def main():
         hidden_dim=64,
         output_dim=num_classes,
         n_layers=2,
-        dropout=0.3
+        dropout=0.5
     ).to(device)
     
     # Training setup
     criterion = nn.CrossEntropyLoss(weight=weights)
-    optimizer = optim.Adam(model.parameters(), lr=1e-4) 
+    optimizer = optim.Adam(model.parameters(), lr=1e-4,weight_decay=1e-5) 
     scheduler = optim.lr_scheduler.StepLR(optimizer, step_size=3, gamma=0.5)  
     
     # Training loop
@@ -200,7 +200,7 @@ def main():
         # Save best model
         if val_acc > best_accuracy:
             best_accuracy = val_acc
-            torch.save(model.state_dict(), 'models/final_lstm_model.pth')
+            torch.save(model.state_dict(), 'models/final_lstm_model_f.pth')
             counter = 0
         else:
             counter += 1
@@ -231,7 +231,7 @@ def main():
     plt.show()
 
     # Final evaluation
-    model.load_state_dict(torch.load(r'models/final_lstm_model.pth'))
+    model.load_state_dict(torch.load(r'models/final_lstm_model_f.pth'))
     _, _, y_pred_encoded, y_true = eval_model(model, test_loader, criterion, device)
     y_pred = le.inverse_transform(y_pred_encoded)
     y_test_labels = le.inverse_transform(y_true)
