@@ -4,6 +4,7 @@ Ethiopian Airlines Reviews Dataset Collection and Analytics is an end-to-end dat
 
 This project focuses on collecting, processing, and analyzing customer reviews related to Ethiopian Airlines, gathered from AirlineQuality (https://www.airlinequality.com/) and TripAdvisor (https://www.tripadvisor.com/). Using Selenium , we aim to gain insights into customer sentiments, satisfaction levels, and key areas needing improvement.
 
+
 ---
 
 # Objectives
