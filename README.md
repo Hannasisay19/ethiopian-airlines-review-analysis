@@ -79,8 +79,6 @@ ETHIOPIAN-AIRLINES-REVIEW-ANALYSIS/
 ├── .gitignore
 
 
-
-
 #  Steps to run the project 
 Clone the repo and install the required libraries:
 ```bash
