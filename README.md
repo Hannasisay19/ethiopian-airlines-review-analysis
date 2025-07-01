@@ -89,6 +89,7 @@ git clone https://github.com/Hannasisay19/ethiopian-airlines-review-analysis.git
 cd ethiopian-airlines-review-analysis
 pip install -r requirements.txt
 
+
 # Dashboard Features 
 Sentiment Pie Chart: Share of positive, neutral, and negative reviews.
 Sentiment Bar Chart: Count of reviews per sentiment.
@@ -100,17 +101,21 @@ Top Cities:
    Top 10 arrival cities with most positive/negative reviews.
 Reviews Table: Paginated table with filtered reviews.
 
+
 # Models Used
 Classical ML Models: SVM, Random Forest, Logistic Regression.
 Deep Learning: LSTM
 Performance evaluated using Accuracy, Precision, Recall, F1-Score, and Confusion Matrix.
 
+
 # Key Insights
 Most reviews are from recent years (2015–2025).
-Negative sentiment dominates but there is also Positive sentiment
+Negative sentiment is prevalent, but there is a notable proportion of positive feedback as well.
+
 
 # License
 This project is licensed under the MIT License.
+
 
 # Acknowledgements
 Thanks to:
@@ -118,9 +123,11 @@ airlinequality.com
 TripAdvisor
 Ethiopian Airlines passengers for the public feedback
 
+
 # Author
 Hanna Sisay Mengistu
 Mekbib Lakew Gebreyohannes
+
 
 Capstone Project — 2025
 
