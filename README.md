@@ -8,7 +8,7 @@ This project focuses on collecting, processing, and analyzing customer reviews r
 ---
 
 # Objectives
-- Scrape and clean review data from both platforms.
+- Scrape and clean review data from both data sources.
 - Perform sentiment analysis (Positive, Neutral, Negative).
 - Build a machine learning & deep learning classification model.
 - Visualize key findings through a custom dashboard.
