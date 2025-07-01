@@ -33,48 +33,51 @@ This project focuses on collecting, processing, and analyzing customer reviews r
 
 ## Project Structure
 
+```
 ETHIOPIAN-AIRLINES-REVIEW-ANALYSIS/
 ├── datasets/
-│ ├── cleaned_data/
-│ │ ├── cleaned_airlinequality_ethiopian_airlines_reviews.csv
-│ │ ├── cleaned_tripadvisor_ethiopian_airlines_reviews.csv
-│ ├── labeled_data/
-│ │ ├── ethiopian_airlines_overall_and_category_sentiment.csv
-│ │ ├── ethiopian_airlines_overall_sentiment_final.csv
-│ ├── merged_data/
-│ │ ├── merged_cleaned_ethiopian_airlines_reviews.csv
-│ ├── raw_data/
-│ │ ├── scraped_airlinequality_ethiopian_airlines_reviews.csv
-│ │ ├── scraped_tripadvisor_ethiopian_airlines_reviews.csv
-│ ├── scraped_data/
-│ │ ├── scraped_airlinequality_ethiopian_airlines_review.csv
-│ │ ├── scraped_tripadvisor_ethiopian_airlines_reviews.csv
+│   ├── cleaned_data/
+│   │   ├── cleaned_airlinequality_ethiopian_airlines_reviews.csv
+│   │   ├── cleaned_tripadvisor_ethiopian_airlines_reviews.csv
+│   ├── labeled_data/
+│   │   ├── ethiopian_airlines_overall_and_category_sentiment.csv
+│   │   ├── ethiopian_airlines_overall_sentiment_final.csv
+│   ├── merged_data/
+│   │   ├── merged_cleaned_ethiopian_airlines_reviews.csv
+│   ├── raw_data/
+│   │   ├── scraped_airlinequality_ethiopian_airlines_reviews.csv
+│   │   ├── scraped_tripadvisor_ethiopian_airlines_reviews.csv
+│   ├── scraped_data/
+│   │   ├── scraped_airlinequality_ethiopian_airlines_review.csv
+│   │   ├── scraped_tripadvisor_ethiopian_airlines_reviews.csv
 ├── images/
-│ ├── Logistic_Regression/
-│ ├── LSTM/
-│ ├── Random_forest/
-│ ├── SVM/
+│   ├── Logistic_Regression/
+│   ├── LSTM/
+│   ├── Random_forest/
+│   ├── SVM/
 ├── models/
-│ ├── final_lstm_model_f.pth
-│ ├── final_svm_model.joblib
-│ ├── rf_model.joblib
-│ ├── logreg_model.joblib
+│   ├── final_lstm_model_f.pth
+│   ├── final_svm_model.joblib
+│   ├── rf_model.joblib
+│   ├── logreg_model.joblib
 ├── project_code/
-│ ├── cleaner_airlinequality_ethiopian_airlines_reviews.ipynb
-│ ├── cleaner_tripadvisor_ethiopian_airlines_reviews.ipynb
-│ ├── ethiopian_airlines_overall_and_category_sentiment.ipynb
-│ ├── ethiopian_airlines_overall_sentiment_analysis_final.ipynb
-│ ├── ethiopian_airlines_overall_sentiment_dashboard.ipynb
-│ ├── logistic_regression_sentiment_.ipynb
-│ ├── merge_cleaned_ethiopian_airlines_reviews.ipynb
-│ ├── random_forest_sentiment.ipynb
-│ ├── scraper_airlinequality_ethiopian_airlines_reviews.ipynb
-│ ├── scraper_tripadvisor_ethiopian_airlines_reviews.ipynb
-│ ├── train_lstm_sentiment.py
-│ ├── train_svm_sentiment.py
+│   ├── cleaner_airlinequality_ethiopian_airlines_reviews.ipynb
+│   ├── cleaner_tripadvisor_ethiopian_airlines_reviews.ipynb
+│   ├── ethiopian_airlines_overall_and_category_sentiment.ipynb
+│   ├── ethiopian_airlines_overall_sentiment_analysis_final.ipynb
+│   ├── ethiopian_airlines_overall_sentiment_dashboard.ipynb
+│   ├── logistic_regression_sentiment_.ipynb
+│   ├── merge_cleaned_ethiopian_airlines_reviews.ipynb
+│   ├── random_forest_sentiment.ipynb
+│   ├── scraper_airlinequality_ethiopian_airlines_reviews.ipynb
+│   ├── scraper_tripadvisor_ethiopian_airlines_reviews.ipynb
+│   ├── train_lstm_sentiment.py
+│   ├── train_svm_sentiment.py
 ├── requirements.txt
 ├── README.md
 ├── .gitignore
+```
+
 
 
 
