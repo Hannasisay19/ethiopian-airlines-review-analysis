@@ -132,7 +132,7 @@ def eval_model(model, data_loader, criterion, device):
 
 # 5. Main Execution
 def main():
-    df = pd.read_csv(r'datasets\labeled_data\ethiopian_airlines_overall_sentiment_final.csv')
+    df = pd.read_csv("../datasets/labeled_data/ethiopian_airlines_overall_sentiment_final.csv")
     X_train, X_test, y_train, y_test = train_test_split(
         df['review_comment'], df['overall_sentiment'], test_size=0.2, random_state=42, stratify=df['overall_sentiment']
     )

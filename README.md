@@ -31,7 +31,9 @@ This project focuses on collecting, processing, and analyzing customer reviews r
 
 ---
 
-# Project Structure
+## Project Structure
+
+```
 ETHIOPIAN-AIRLINES-REVIEW-ANALYSIS/
 ├── datasets/
 │   ├── cleaned_data/
@@ -46,20 +48,18 @@ ETHIOPIAN-AIRLINES-REVIEW-ANALYSIS/
 │   │   ├── scraped_airlinequality_ethiopian_airlines_reviews.csv
 │   │   ├── scraped_tripadvisor_ethiopian_airlines_reviews.csv
 │   ├── scraped_data/
-│       ├── scraped_airlinequality_ethiopian_airlines_review.csv
-│       ├── scraped_tripadvisor_ethiopian_airlines_reviews.csv
-│
+│   │   ├── scraped_airlinequality_ethiopian_airlines_review.csv
+│   │   ├── scraped_tripadvisor_ethiopian_airlines_reviews.csv
 ├── images/
 │   ├── Logistic_Regression/
 │   ├── LSTM/
 │   ├── Random_forest/
 │   ├── SVM/
-│
 ├── models/
-│   ├── label_encoder.joblib
+│   ├── final_lstm_model_f.pth
+│   ├── final_svm_model.joblib
+│   ├── rf_model.joblib
 │   ├── logreg_model.joblib
-│   ├── tfidf_vectorizer.joblib
-│
 ├── project_code/
 │   ├── cleaner_airlinequality_ethiopian_airlines_reviews.ipynb
 │   ├── cleaner_tripadvisor_ethiopian_airlines_reviews.ipynb
@@ -71,22 +71,25 @@ ETHIOPIAN-AIRLINES-REVIEW-ANALYSIS/
 │   ├── random_forest_sentiment.ipynb
 │   ├── scraper_airlinequality_ethiopian_airlines_reviews.ipynb
 │   ├── scraper_tripadvisor_ethiopian_airlines_reviews.ipynb
-│
-├── train_lstm_sentiment.py
-├── train_svm_sentiment.py
+│   ├── train_lstm_sentiment.py
+│   ├── train_svm_sentiment.py
 ├── requirements.txt
 ├── README.md
 ├── .gitignore
+```
 
 
-#  Steps to run the project 
+
+
+# Steps to run the project 
 Clone the repo and install the required libraries:
 ```bash
 git clone https://github.com/Hannasisay19/ethiopian-airlines-review-analysis.git
 cd ethiopian-airlines-review-analysis
 pip install -r requirements.txt
 
-Dashboard Features
+
+# Dashboard Features 
 Sentiment Pie Chart: Share of positive, neutral, and negative reviews.
 Sentiment Bar Chart: Count of reviews per sentiment.
 Average Ratings: Mean rating per category or selected category.
@@ -97,27 +100,33 @@ Top Cities:
    Top 10 arrival cities with most positive/negative reviews.
 Reviews Table: Paginated table with filtered reviews.
 
-Models Used
+
+# Models Used
 Classical ML Models: SVM, Random Forest, Logistic Regression.
 Deep Learning: LSTM
 Performance evaluated using Accuracy, Precision, Recall, F1-Score, and Confusion Matrix.
 
-Key Insights
-Most reviews are from recent years (2015–2025).
-Negative sentiment dominates but there is also Positive sentiment
 
-License
+# Key Insights
+Most reviews are from recent years (2015–2025).
+Negative sentiment is prevalent, but there is a notable proportion of positive feedback as well.
+
+
+# License
 This project is licensed under the MIT License.
 
-Acknowledgements
+
+# Acknowledgements
 Thanks to:
 airlinequality.com
 TripAdvisor
 Ethiopian Airlines passengers for the public feedback
 
-Author
+
+# Author
 Hanna Sisay Mengistu
 Mekbib Lakew Gebreyohannes
+
 
 Capstone Project — 2025
 
