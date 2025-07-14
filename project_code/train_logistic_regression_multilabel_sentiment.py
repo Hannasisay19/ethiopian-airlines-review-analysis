@@ -16,3 +16,7 @@ df = pd.read_csv(r'datasets\labeled_data\ethiopian_airlines_overall_and_topic_se
 X_text = df["review_comment"].fillna("")
 y_labels = df[[col for col in df.columns if col.endswith("_sentiment") and col != "overall_sentiment"]]
 y_numeric = y_labels.apply(lambda col: col.map({"Negative": 0, "Neutral": 1, "Positive": 2}).fillna(1))
+
+# Vectorize text using TF-IDF
+vectorizer = TfidfVectorizer(max_features=5000)
+X = vectorizer.fit_transform(X_text)
