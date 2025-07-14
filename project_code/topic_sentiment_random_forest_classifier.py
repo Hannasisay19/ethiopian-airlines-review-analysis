@@ -85,4 +85,4 @@ print(f"Random Forest Avg Cross-Validated Macro F1: {np.mean(f1_scores):.3f} ± 
 
 # Save trained model and vectorizer
 joblib.dump(model, 'models/random_forest_topic_sentiment_classifier.joblib')
-joblib.dump(vectorizer, 'models/tfidf_vectorizer_topic_sentiment.joblib')
+joblib.dump(vectorizer, 'models/tfidf_vectorizer_topic_sentiment_by_rf.joblib')
