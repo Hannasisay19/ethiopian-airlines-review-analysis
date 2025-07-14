@@ -27,3 +27,9 @@ X_train, X_test, y_train, y_test = train_test_split(X, y_numeric, test_size=0.2,
 # Train model
 model = MultiOutputClassifier(LogisticRegression(max_iter=5000,class_weight="balanced"))
 model.fit(X_train, y_train)
+
+# Predict
+y_pred = model.predict(X_test)
+
+# Labels for reporting
+labels = ["Negative", "Neutral", "Positive"]
