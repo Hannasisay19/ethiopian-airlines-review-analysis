@@ -20,3 +20,13 @@ y_numeric = y_labels.apply(lambda col: col.map({"Negative": 0, "Neutral": 1, "Po
 # Vectorize text using TF-IDF
 vectorizer = TfidfVectorizer(max_features=5000)
 X = vectorizer.fit_transform(X_text)
+
+# Train-test split
+X_train, X_test, y_train, y_test = train_test_split(X, y_numeric, test_size=0.2, random_state=42)
+
+# Train model with balanced class weights
+model = MultiOutputClassifier(RandomForestClassifier(n_estimators=200,class_weight="balanced",random_state=42))
+model.fit(X_train, y_train)
+
+# Predict
+y_pred = model.predict(X_test)
