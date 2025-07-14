@@ -57,3 +57,28 @@ for idx, col in enumerate(y_labels.columns):
     plt.title(f"Confusion Matrix: {col}")
     plt.tight_layout()
     plt.show()
+
+# Cross-validation
+kf = KFold(n_splits=5, shuffle=True, random_state=42)
+accuracies = []
+f1_scores = []
+
+for train_idx, val_idx in kf.split(X):
+    X_train_fold, X_val_fold = X[train_idx], X[val_idx]
+    y_train_fold, y_val_fold = y_numeric.iloc[train_idx], y_numeric.iloc[val_idx]
+
+    fold_model = MultiOutputClassifier(RandomForestClassifier(n_estimators=200,class_weight="balanced",random_state=42))
+    fold_model.fit(X_train_fold, y_train_fold)
+    y_val_pred = fold_model.predict(X_val_fold)
+
+    acc = []
+    f1 = []
+    for i in range(y_numeric.shape[1]):
+        acc.append(accuracy_score(y_val_fold.iloc[:, i], y_val_pred[:, i]))
+        f1.append(f1_score(y_val_fold.iloc[:, i], y_val_pred[:, i], average='macro'))
+
+    accuracies.append(np.mean(acc))
+    f1_scores.append(np.mean(f1))
+
+print(f"\nRandom Forest Avg Cross-Validated Accuracy: {np.mean(accuracies):.3f} ± {np.std(accuracies):.3f}")
+print(f"Random Forest Avg Cross-Validated Macro F1: {np.mean(f1_scores):.3f} ± {np.std(f1_scores):.3f}")
