@@ -33,3 +33,29 @@ y_pred = model.predict(X_test)
 
 # Labels for reporting
 labels = ["Negative", "Neutral", "Positive"]
+
+# Per-category metrics and confusion matrix
+for idx, col in enumerate(y_labels.columns):
+    print(f"\n=== Logistic Regression Category: {col} ===")
+
+    # Print classification report
+    report = classification_report(y_test.iloc[:, idx], y_pred[:, idx], target_names=labels, output_dict=True, zero_division=0)
+
+    print(classification_report( y_test.iloc[:, idx], y_pred[:, idx], target_names=labels, zero_division=0))
+
+    # show accuracy for that category
+    acc = accuracy_score(y_test.iloc[:, idx], y_pred[:, idx])
+    print(f"Accuracy for {col}: {acc:.3f}")
+
+    # Confusion matrix
+    cm = confusion_matrix(y_test.iloc[:, idx], y_pred[:, idx])
+
+    # Plot confusion matrix
+    plt.figure(figsize=(6, 4))
+    sns.heatmap(cm, annot=True, fmt="d", cmap="Blues", cbar=False,
+                xticklabels=labels, yticklabels=labels)
+    plt.xlabel("Predicted")
+    plt.ylabel("Actual")
+    plt.title(f"Confusion Matrix: {col}")
+    plt.tight_layout()
+    plt.show()
