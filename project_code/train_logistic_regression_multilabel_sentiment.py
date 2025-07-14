@@ -83,3 +83,7 @@ for train_idx, val_idx in kf.split(X):
 
 print(f"\nLogistic Regression Avg Cross-Validated Accuracy: {np.mean(accuracies):.3f} ± {np.std(accuracies):.3f}")
 print(f"Logistic Regression Avg Cross-Validated Macro F1: {np.mean(f1_scores):.3f} ± {np.std(f1_scores):.3f}")
+
+# Save trained model and vectorizer
+joblib.dump(model, 'models/logistic_sentiment_multilabel_model.joblib')
+joblib.dump(vectorizer, 'models/tfidf_vectorizer.joblib')
