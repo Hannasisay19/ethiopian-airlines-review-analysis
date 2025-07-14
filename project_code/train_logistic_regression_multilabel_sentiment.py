@@ -52,8 +52,7 @@ for idx, col in enumerate(y_labels.columns):
 
     # Plot confusion matrix
     plt.figure(figsize=(6, 4))
-    sns.heatmap(cm, annot=True, fmt="d", cmap="Blues", cbar=False,
-                xticklabels=labels, yticklabels=labels)
+    sns.heatmap(cm, annot=True, fmt="d", cmap="Blues", cbar=False,xticklabels=labels, yticklabels=labels)
     plt.xlabel("Predicted")
     plt.ylabel("Actual")
     plt.title(f"Confusion Matrix: {col}")
