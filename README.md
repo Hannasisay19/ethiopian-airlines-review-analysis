@@ -61,6 +61,7 @@ ETHIOPIAN-AIRLINES-REVIEW-ANALYSIS/
 │   ├── rf_model.joblib
 │   ├── logreg_model.joblib
 ├── project_code/
+│   ├── topic_sentiment/
 │   ├── cleaner_airlinequality_ethiopian_airlines_reviews.ipynb
 │   ├── cleaner_tripadvisor_ethiopian_airlines_reviews.ipynb
 │   ├── ethiopian_airlines_overall_and_category_sentiment.ipynb
