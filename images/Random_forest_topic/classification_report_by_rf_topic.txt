@@ -1,4 +1,4 @@
-PS C:\Users\hanna\OneDrive\Desktop\models_with_catagory> & C:/Users/hanna/AppData/Local/Programs/Python/Python313/python.exe c:/Users/hanna/OneDrive/Desktop/models_with_catagory/RF/random_forest_weight.py
+
 
 === Random Forest Category: cabin_crew_sentiment ===
               precision    recall  f1-score   support
@@ -132,4 +132,3 @@ Accuracy for inflight_entertainment_sentiment: 0.824
 
 Random Forest Avg Cross-Validated Accuracy: 0.807 ± 0.004
 Random Forest Avg Cross-Validated Macro F1: 0.488 ± 0.005
-PS C:\Users\hanna\OneDrive\Desktop\models_with_catagory> 
