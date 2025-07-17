@@ -1,0 +1,135 @@
+PS C:\Users\hanna\OneDrive\Desktop\models_with_catagory> & C:/Users/hanna/AppData/Local/Programs/Python/Python313/python.exe c:/Users/hanna/OneDrive/Desktop/models_with_catagory/RF/random_forest_weight.py
+
+=== Random Forest Category: cabin_crew_sentiment ===
+              precision    recall  f1-score   support
+
+    Negative       1.00      0.04      0.07       113
+     Neutral       0.75      1.00      0.86       695
+    Positive       0.92      0.17      0.29       140
+
+    accuracy                           0.76       948
+   macro avg       0.89      0.40      0.41       948
+weighted avg       0.81      0.76      0.68       948
+
+Accuracy for cabin_crew_sentiment: 0.761
+
+=== Random Forest Category: flight_delay_sentiment ===
+              precision    recall  f1-score   support
+
+    Negative       0.82      0.38      0.52       188
+     Neutral       0.78      0.98      0.87       684
+    Positive       1.00      0.01      0.03        76
+
+    accuracy                           0.78       948
+   macro avg       0.87      0.46      0.47       948
+weighted avg       0.81      0.78      0.73       948
+
+Accuracy for flight_delay_sentiment: 0.784
+
+=== Random Forest Category: luggage_handling_sentiment ===
+              precision    recall  f1-score   support
+
+    Negative       0.89      0.41      0.57       164
+     Neutral       0.85      0.99      0.91       746
+    Positive       0.00      0.00      0.00        38
+
+    accuracy                           0.85       948
+   macro avg       0.58      0.47      0.49       948
+weighted avg       0.82      0.85      0.82       948
+
+Accuracy for luggage_handling_sentiment: 0.851
+
+=== Random Forest Category: food_service_sentiment ===
+              precision    recall  f1-score   support
+
+    Negative       0.79      0.28      0.41       166
+     Neutral       0.76      0.97      0.85       556
+    Positive       0.84      0.69      0.75       226
+
+    accuracy                           0.78       948
+   macro avg       0.80      0.64      0.67       948
+weighted avg       0.79      0.78      0.75       948
+
+Accuracy for food_service_sentiment: 0.780
+
+=== Random Forest Category: seat_comfort_sentiment ===
+              precision    recall  f1-score   support
+
+    Negative       0.79      0.17      0.28       152
+     Neutral       0.72      0.99      0.83       613
+    Positive       0.87      0.34      0.49       183
+
+    accuracy                           0.73       948
+   macro avg       0.79      0.50      0.53       948
+weighted avg       0.76      0.73      0.68       948
+
+Accuracy for seat_comfort_sentiment: 0.730
+
+=== Random Forest Category: restroom_quality_sentiment ===
+              precision    recall  f1-score   support
+
+    Negative       1.00      0.03      0.07        89
+     Neutral       0.85      1.00      0.92       799
+    Positive       0.00      0.00      0.00        60
+
+    accuracy                           0.85       948
+   macro avg       0.62      0.34      0.33       948
+weighted avg       0.81      0.85      0.78       948
+
+Accuracy for restroom_quality_sentiment: 0.846
+
+=== Random Forest Category: airport_check_sentiment ===
+              precision    recall  f1-score   support
+
+    Negative       0.77      0.15      0.25       115
+     Neutral       0.84      0.99      0.91       779
+    Positive       1.00      0.02      0.04        54
+
+    accuracy                           0.84       948
+   macro avg       0.87      0.39      0.40       948
+weighted avg       0.84      0.84      0.78       948
+
+Accuracy for airport_check_sentiment: 0.836
+
+=== Random Forest Category: customer_service_sentiment ===
+              precision    recall  f1-score   support
+
+    Negative       0.78      0.82      0.80       324
+     Neutral       0.83      0.76      0.79       353
+    Positive       0.77      0.80      0.78       271
+
+    accuracy                           0.79       948
+   macro avg       0.79      0.79      0.79       948
+weighted avg       0.79      0.79      0.79       948
+
+Accuracy for customer_service_sentiment: 0.792
+
+=== Random Forest Category: value_for_money_sentiment ===
+              precision    recall  f1-score   support
+
+    Negative       1.00      0.03      0.05        73
+     Neutral       0.83      1.00      0.91       781
+    Positive       0.83      0.05      0.10        94
+
+    accuracy                           0.83       948
+   macro avg       0.89      0.36      0.35       948
+weighted avg       0.84      0.83      0.76       948
+
+Accuracy for value_for_money_sentiment: 0.830
+
+=== Random Forest Category: inflight_entertainment_sentiment ===
+              precision    recall  f1-score   support
+
+    Negative       1.00      0.01      0.03        74
+     Neutral       0.82      1.00      0.90       776
+    Positive       1.00      0.04      0.08        98
+
+    accuracy                           0.82       948
+   macro avg       0.94      0.35      0.34       948
+weighted avg       0.86      0.82      0.75       948
+
+Accuracy for inflight_entertainment_sentiment: 0.824
+
+Random Forest Avg Cross-Validated Accuracy: 0.807 ± 0.004
+Random Forest Avg Cross-Validated Macro F1: 0.488 ± 0.005
+PS C:\Users\hanna\OneDrive\Desktop\models_with_catagory> 
