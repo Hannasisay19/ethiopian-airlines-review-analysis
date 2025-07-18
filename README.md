@@ -57,15 +57,10 @@ pip install -r requirements.txt
 
 
 # Dashboard Features 
-Sentiment Pie Chart: Share of positive, neutral, and negative reviews.
-Sentiment Bar Chart: Count of reviews per sentiment.
-Average Ratings: Mean rating per category or selected category.
-Sentiment Trend: Monthly sentiment counts over time.
-Rating Trend: Monthly average ratings per category.
-Top Cities:
-   Top 10 departure cities with most positive/negative reviews.
-   Top 10 arrival cities with most positive/negative reviews.
-Reviews Table: Paginated table with filtered reviews.
+The project includes two interactive dashboards built using Plotly Dash:
+-Overall Sentiment Dashboard: Presents overall customer sentiment (positive, neutral, negative), average ratings, and review trends over time.
+-Topic-Based Sentiment Dashboard: Highlights sentiments for specific topics such as seat comfort, cabin service, food, and more.
+Both dashboards feature visualizations like pie charts, bar charts, line plots, and filtered review tables to support insight discovery.
 
 
 # Models Used
