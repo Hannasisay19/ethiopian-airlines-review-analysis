@@ -36,12 +36,12 @@ This project focuses on collecting, processing, and analyzing customer reviews r
 ```
 ETHIOPIAN-AIRLINES-REVIEW-ANALYSIS/
 ├── datasets/           # Raw, cleaned, merged, and labeled review data
-├── models/             # Trained ML and LSTM model files (.joblib, .pth)
-├── project_code/       # Notebooks and scripts for scraping, cleaning, EDA, modeling, and dashboards
-├── images/             # Visuals for model performance (confusion matrices, classification reports)
-├── requirements.txt    # List of dependencies
+├── images/             # Trained ML and LSTM model files (.joblib, .pth)
+├── models/       # Notebooks and scripts for scraping, cleaning, EDA, modeling, and dashboards
+├── project_code/             # Visuals for model performance (confusion matrices, classification reports)
+├── .gitignore   # List of dependencies
 ├── README.md           # Project overview and instructions
-├── .gitignore          # Files/directories to ignore in version control
+├── requirements.txt        # Files/directories to ignore in version control
 
 ```
 
