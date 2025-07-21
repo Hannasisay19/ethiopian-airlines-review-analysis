@@ -1,0 +1,139 @@
+=== SVM Category: cabin_crew_sentiment ===
+              precision    recall  f1-score   support
+
+    Negative       0.76      0.52      0.62       113
+     Neutral       0.91      0.98      0.94       691
+    Positive       0.85      0.72      0.78       144
+
+    accuracy                           0.89       948
+   macro avg       0.84      0.74      0.78       948
+weighted avg       0.88      0.89      0.88       948
+
+Accuracy for cabin_crew_sentiment: 0.8868
+
+===================================================================================
+=== SVM Category: flight_delay_sentiment ===
+              precision    recall  f1-score   support
+
+    Negative       0.71      0.67      0.69       177
+     Neutral       0.89      0.96      0.92       696
+    Positive       0.66      0.33      0.44        75
+
+    accuracy                           0.85       948
+   macro avg       0.75      0.65      0.68       948
+weighted avg       0.84      0.85      0.84       948
+
+Accuracy for flight_delay_sentiment: 0.852
+
+=======================================================================
+
+=== SVM Category: luggage_handling_sentiment ===
+              precision    recall  f1-score   support
+
+    Negative       0.78      0.66      0.71       157
+     Neutral       0.92      0.97      0.94       749
+    Positive       0.63      0.45      0.53        42
+
+    accuracy                           0.89       948
+   macro avg       0.78      0.69      0.73       948
+weighted avg       0.89      0.89      0.89       948
+
+Accuracy for luggage_handling_sentiment: 0.892
+=======================================================================
+=== SVM Category: food_service_sentiment ===
+              precision    recall  f1-score   support
+
+    Negative       0.72      0.63      0.67       160
+     Neutral       0.90      0.92      0.91       552
+    Positive       0.83      0.84      0.84       236
+
+    accuracy                           0.85       948
+   macro avg       0.82      0.80      0.81       948
+weighted avg       0.85      0.85      0.85       948
+
+Accuracy for food_service_sentiment: 0.854
+
+======================================================================
+
+=== SVM Category: seat_comfort_sentiment ===
+              precision    recall  f1-score   support
+
+    Negative       0.69      0.58      0.63       146
+     Neutral       0.88      0.92      0.90       612
+    Positive       0.79      0.76      0.78       190
+
+    accuracy                           0.84       948
+   macro avg       0.79      0.76      0.77       948
+weighted avg       0.83      0.84      0.84       948
+
+Accuracy for seat_comfort_sentiment: 0.839
+=================================================================
+=== SVM Category: restroom_quality_sentiment ===
+              precision    recall  f1-score   support
+
+    Negative       0.76      0.58      0.66        86
+     Neutral       0.94      0.98      0.96       797
+    Positive       0.73      0.57      0.64        65
+
+    accuracy                           0.92       948
+   macro avg       0.81      0.71      0.75       948
+weighted avg       0.91      0.92      0.91       948
+
+Accuracy for restroom_quality_sentiment: 0.920
+=================================================================
+=== SVM Category: airport_check_sentiment ===
+              precision    recall  f1-score   support
+
+    Negative       0.67      0.52      0.59       106
+     Neutral       0.91      0.97      0.94       781
+    Positive       0.79      0.44      0.57        61
+
+    accuracy                           0.88       948
+   macro avg       0.79      0.64      0.70       948
+weighted avg       0.87      0.88      0.87       948
+
+Accuracy for airport_check_sentiment: 0.884
+===============================================================
+=== SVM Category: customer_service_sentiment ===
+              precision    recall  f1-score   support
+
+    Negative       0.79      0.72      0.76       311
+     Neutral       0.74      0.79      0.77       357
+    Positive       0.80      0.81      0.80       280
+
+    accuracy                           0.77       948
+   macro avg       0.78      0.77      0.77       948
+weighted avg       0.77      0.77      0.77       948
+
+Accuracy for customer_service_sentiment: 0.773
+================================================================
+=== SVM Category: value_for_money_sentiment ===
+              precision    recall  f1-score   support
+
+    Negative       0.62      0.35      0.45        65
+     Neutral       0.92      0.98      0.95       786
+    Positive       0.80      0.63      0.71        97
+
+    accuracy                           0.90       948
+   macro avg       0.78      0.65      0.70       948
+weighted avg       0.89      0.90      0.89       948
+
+Accuracy for value_for_money_sentiment: 0.899
+===============================================================
+
+=== SVM Category: inflight_entertainment_sentiment ===
+              precision    recall  f1-score   support
+
+    Negative       0.69      0.51      0.59        71
+     Neutral       0.93      0.98      0.96       772
+    Positive       0.82      0.70      0.75       105
+
+    accuracy                           0.91       948
+   macro avg       0.82      0.73      0.76       948
+weighted avg       0.90      0.91      0.90       948
+
+Accuracy for inflight_entertainment_sentiment: 0.910
+
+====================================================================
+
+
