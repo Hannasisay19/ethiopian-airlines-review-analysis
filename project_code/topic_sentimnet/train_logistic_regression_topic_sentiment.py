@@ -9,8 +9,6 @@ from sklearn.multioutput import MultiOutputClassifier
 from sklearn.metrics import (classification_report,accuracy_score,f1_score,confusion_matrix)
 import joblib
 
-# Set global seed for reproducibility
-np.random.seed(42)
 
 # Load dataset
 df = pd.read_csv(r'datasets\labeled_data\ethiopian_airlines_overall_and_topic_sentiment.csv')
